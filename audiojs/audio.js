@@ -320,15 +320,7 @@
       var player = audio.settings.createPlayer,
         playPause = getByClass(player.playPauseClass, wrapper),
         progress = getByClass(player.progressClass, wrapper),
-        scrubber = getByClass(player.scrubberClass, wrapper),
-        left = 37,
-        up = 38,
-        right = 39,
-        down = 40,
-        pageUp = 33,
-        pageDown = 34,
-        space = 32,
-        enter = 13;
+        scrubber = getByClass(player.scrubberClass, wrapper);
 
       container[audiojs].events.addListener(playPause, 'click', function(e) {
         audio.playPause.apply(audio);
@@ -337,7 +329,7 @@
       container[audiojs].events.addListener(playPause, 'keydown', function(e) {
         var prevent = false;
 
-        if (e.keyCode === space || e.keyCode === enter) {
+        if (e.keyCode === 32 || e.keyCode === 13) {
           audio.playPause.apply(audio);
           prevent = true;
         }
@@ -358,16 +350,16 @@
           prevent = false;
 
         switch (e.keyCode) {
-          case pageDown:
-          case left:
-          case down:
+          case 34:
+          case 37:
+          case 40:
             audio.skipTo((progressLeft - 5) / scrubber.offsetWidth);
             prevent = true;
             break;
 
-          case pageUp:
-          case right:
-          case up:
+          case 33:
+          case 39:
+          case 38:
             audio.skipTo((progressLeft + 5) / scrubber.offsetWidth);
             prevent = true;
             break;
